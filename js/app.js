@@ -12,9 +12,21 @@ angular.module('fitnessAssessment-client-2',['ngRoute'])
      $scope.name = "RegistrationController";
      $scope.params = $routeParams;
  })
-   .controller('HomeController', function($scope, $routeParams) {
+   .controller('HomeController', function($scope, $routeParams, dataService) {
      $scope.name = "HomeController";
      $scope.params = $routeParams;
+     dataService.getUsers(function(response){
+		// debugger;
+		console.log("data from the response = " + response.data);	
+		$scope.users = response.data;
+	});
+
+     	$scope.deleteUser = function(user, $index){
+		console.log("the index we are about to delete is = " + $index);
+		//dataService.deleteTodo(todo);
+		$scope.users.splice($index,1);
+	};
+
  })
   .config(function($routeProvider, $locationProvider) {
 
@@ -32,5 +44,13 @@ angular.module('fitnessAssessment-client-2',['ngRoute'])
 	    templateUrl: 'templates/home.html',
 	    controller: 'HomeController'
 	  })
-	  .otherwise({ redirectTo: '/Login' });
-});
+	  .otherwise({ redirectTo: '/Home' });
+})
+.service('dataService',function($http){
+
+	this.getUsers = function(callback){
+		console.log("in the dataService getUsers method");
+		$http.get('mock/users.json')
+		.then(callback)
+	}
+  });

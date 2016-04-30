@@ -3,9 +3,9 @@
 <p>You're logged in!!</p>
 <h3>There are {{vm.allUsers.length}} registered users. </h3>
 <ul>
-    <li ng-repeat="user in vm.allUsers">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a href="#" ng-click="vm.deleteUser(user.objectId)">Delete</a>
+    <li ng-repeat="user in users">
+        ({{user.firstName}} {{user.lastName}})
+        - <a href="" ng-click="deleteUser(user,$index)">Delete</a>
     </li>
 </ul>
 <p>&nbsp;</p>
