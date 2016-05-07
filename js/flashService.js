@@ -1,6 +1,6 @@
 'use strict';
 angular.module("fitnessAssessment-client-2")	
-.factory('FlashService', function FlashService($rootScope) {
+.factory('flashService', function FlashService($rootScope) {
     var service = {};
 
     service.Success = Success;

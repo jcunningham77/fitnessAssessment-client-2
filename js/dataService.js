@@ -44,9 +44,27 @@ angular.module("fitnessAssessment-client-2")
 
 	}
 
+    this.register = function(user){
+            var config = {
+                headers : {
+                    'authorization': undefined,
+                    'application-id': 'CCD64643-E1D9-9AA2-FFF6-93992E5B9D00',
+                    'secret-key':'266A1786-4FFA-FBAE-FFD7-53D4EEF7A700',
+                    'application-type':'REST',
+                    'Content-Type':'application/json'
+                }
+            }
+
+             console.log("about to invoke Backendless register API call, first = " + user.firstName + " and last = " + user.lastName);
+
+             return $http.post('https://api.backendless.com/v1/users/register', user,config).then(handleSuccess, handleError);
+           
+
+    }
+
    function handleSuccess(res) {
         var response;
-        response = { success: true };
+        response = { success: true,data:res };
         // debugger;
         console.log(TAG + " handleSuccess: res = " + JSON.stringify(res));
         console.log(TAG + " handleSuccess: response = " + JSON.stringify(response));
