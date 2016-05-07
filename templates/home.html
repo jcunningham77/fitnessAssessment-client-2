@@ -1,6 +1,6 @@
-<pre>This is the home.html page...controller: {{name}}</pre>
+<pre id="controllerMessage">This is the home.html page...controller: {{name}}</pre>
 <h2>Hi {{vm.user.firstName}}!</h2>
-<p>You're logged in!!</p>
+<p id="greeting">You're logged in!!</p>
 <h3>There are {{vm.allUsers.length}} registered users. </h3>
 <ul>
     <li ng-repeat="user in users">
