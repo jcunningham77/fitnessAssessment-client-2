@@ -31,7 +31,12 @@ angular.module("fitnessAssessment-client-2")
 	            //debugger;
 	            console.log("LoginController.login, response is success");
 	            console.log("LoginController.login, response data = " + JSON.stringify(response.data));
+
 	            authenticationService.SetCredentials(username, password);
+	            // console.log("LoginController.login - data from response to be stored in auth:");
+	            // console.log("email:" + response.data.config.data.email);
+	            // console.log("pw:" + response.data.config.data.password);
+	            // authenticationService.SetCredentials(response.data.config.data.email, response.data.config.data.password);
 	            // vm.dataLoading = false;
 
 	            $location.path('/Home');
@@ -84,3 +89,23 @@ angular.module("fitnessAssessment-client-2")
 		$scope.users.splice($index,1);
 	};
 })
+.controller('UserController',function($scope,$routeParams,dataService){
+	$scope.name = "UserController";
+	$scope.params = $routeParams;
+
+	dataService.getUserInfo(function(response){
+		console.log("data from the response = " + JSON.stringify(response.data));
+		$scope.user = response.data;	
+	});
+
+	$scope.oneAtATime = true;
+
+  	$scope.status = {
+    	isFirstOpen: true,
+    	isFirstDisabled: false
+  	};
+
+});
+
+
+

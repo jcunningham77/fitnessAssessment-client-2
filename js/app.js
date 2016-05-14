@@ -24,6 +24,12 @@
 		    // data: { active:"home"}
 		    // active=home;
 		  })
+		  .when('/UserInfo', {
+		    templateUrl: 'templates/user.html',
+		    controller: 'UserController'
+		    // data: { active:"home"}
+		    // active=home;
+		  })		  
 		  .otherwise({ redirectTo: '/Home' });
 	})
 	.run(run);

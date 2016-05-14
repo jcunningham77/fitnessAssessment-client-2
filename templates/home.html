@@ -1,10 +1,10 @@
 <pre id="controllerMessage">This is the home.html page...controller: {{name}}</pre>
-<h2>Hi {{vm.user.firstName}}!</h2>
+<h2>Hi {{user.firstName}}!</h2>
 <p id="greeting">You're logged in!!</p>
 <h3>There are {{vm.allUsers.length}} registered users. </h3>
 <ul>
     <li ng-repeat="user in users">
-        ({{user.firstName}} {{user.lastName}})
+        <a href="#/UserInfo" >({{user.firstName}} {{user.lastName}})</a>
         - <a href="" ng-click="deleteUser(user,$index)">Delete</a>
     </li>
 </ul>

@@ -20,6 +20,22 @@ angular.module("fitnessAssessment-client-2")
             $http.get('https://api.backendless.com/v1/data/Users?props=firstName,lastName,objectId', config).then(callback, handleError);
 	}
 
+    this.getUserInfo = function(callback){
+        console.log("in the dataservice getUserInfo method");
+        var config = {
+                headers : {
+                    'authorization': undefined,
+                    'application-id': 'CCD64643-E1D9-9AA2-FFF6-93992E5B9D00',
+                    'secret-key':'266A1786-4FFA-FBAE-FFD7-53D4EEF7A700',
+                    'application-type':'REST',
+                    'Content-Type':'application/json'
+                }
+            }
+        
+        $http.get('https://api.backendless.com/v1/data/Users/61C9B58C-8466-BF55-FF2D-20AAA0258900?loadRelations=assessments', config).then(callback,handleError);
+
+    }
+
 	this.login = function(username,password){
 		  var config = {
                 headers : {

@@ -1,0 +1,24 @@
+<h1> {{user.lastName}}, {{user.firstName}}</h1>
+
+<h2> Assessments</h2>
+  <script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+  </script>
+
+<uib-accordion close-others="oneAtATime">
+
+	<uib-accordion-group heading="{{assessment.date}}" ng-repeat="assessment in user.assessments">
+	      <h3>{{assessment.height}}</h3>
+	      <h3>{{assessment.weight}}</h3>
+	</uib-accordion-group>
+</uib-accordion>
