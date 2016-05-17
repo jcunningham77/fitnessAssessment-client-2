@@ -4,8 +4,8 @@
 <h3>There are {{vm.allUsers.length}} registered users. </h3>
 <ul>
     <li ng-repeat="user in users">
-        <a href="#/UserInfo" >({{user.firstName}} {{user.lastName}})</a>
-        - <a href="" ng-click="deleteUser(user,$index)">Delete</a>
+        <a href="#/UserInfo?userId={{user.objectId}}" >{{user.firstName}} {{user.lastName}}</a>
+        - <small><a href="" ng-click="deleteUser(user,$index)">Delete</a></small>
     </li>
 </ul>
 <p>&nbsp;</p>

@@ -20,7 +20,7 @@ angular.module("fitnessAssessment-client-2")
             $http.get('https://api.backendless.com/v1/data/Users?props=firstName,lastName,objectId', config).then(callback, handleError);
 	}
 
-    this.getUserInfo = function(callback){
+    this.getUserInfo = function(userId, callback){
         console.log("in the dataservice getUserInfo method");
         var config = {
                 headers : {
@@ -32,7 +32,7 @@ angular.module("fitnessAssessment-client-2")
                 }
             }
         
-        $http.get('https://api.backendless.com/v1/data/Users/61C9B58C-8466-BF55-FF2D-20AAA0258900?loadRelations=assessments', config).then(callback,handleError);
+        $http.get('https://api.backendless.com/v1/data/Users/' + userId + '?loadRelations=assessments', config).then(callback,handleError);
 
     }
 

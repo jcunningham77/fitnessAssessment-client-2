@@ -92,8 +92,11 @@ angular.module("fitnessAssessment-client-2")
 .controller('UserController',function($scope,$routeParams,dataService){
 	$scope.name = "UserController";
 	$scope.params = $routeParams;
+	//debugger;
+	console.log("UserController, routeParams = " + JSON.stringify($scope.params));
 
-	dataService.getUserInfo(function(response){
+
+	dataService.getUserInfo($scope.params.userId,function(response){
 		console.log("data from the response = " + JSON.stringify(response.data));
 		$scope.user = response.data;	
 	});
