@@ -1,6 +1,29 @@
-<h1> {{user.lastName}}, {{user.firstName}}</h1>
+<h1> {{user.lastName}}, {{user.firstName}}</h1><!-- 
 
 <h2> Assessments</h2>
+  <script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">Assessment List</span></a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+  </script>
+
+<uib-accordion close-others="oneAtATime">
+
+	<uib-accordion-group heading="{{assessment.assessmentDate}}" ng-repeat="assessment in user.assessments">
+	      <h3>{{assessment.height}}</h3>
+	      <h3>{{assessment.weight}}</h3>
+	</uib-accordion-group>
+</uib-accordion> -->
+
+<div ng-controller="AccordionDemoCtrl">
   <script type="text/ng-template" id="group-template.html">
     <div class="panel {{panelClass || 'panel-default'}}">
       <div class="panel-heading">
@@ -15,10 +38,24 @@
     </div>
   </script>
 
-<uib-accordion close-others="oneAtATime">
+<!--   <p>
+    <button type="button" class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
+    <button type="button" class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
+  </p>
 
-	<uib-accordion-group heading="{{assessment.date}}" ng-repeat="assessment in user.assessments">
-	      <h3>{{assessment.height}}</h3>
-	      <h3>{{assessment.weight}}</h3>
-	</uib-accordion-group>
-</uib-accordion>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="oneAtATime">
+      Open only one at a time
+    </label>
+  </div> -->
+  <uib-accordion close-others="oneAtATime">
+    <uib-accordion-group heading="Assessment Date: {{assessment.created | date:'MM/dd/yyyy HH:mm'}}" ng-repeat="assessment in user.assessments | orderBy : assessment.created">
+      <h5>Height: {{assessment.height}}</h5>
+	  <h5>Weight: {{assessment.weight}}</h5>
+	  <h5>Age: {{assessment.age}}</h5>
+	  <h5>Blood Pressure: {{assessment.bloodpressure}}</h5>
+    </uib-accordion-group>
+   
+  </uib-accordion>
+</div>

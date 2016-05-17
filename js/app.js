@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-	angular.module('fitnessAssessment-client-2',['ngRoute', 'ngCookies'])
+	angular.module('fitnessAssessment-client-2',['ngRoute', 'ngCookies', 'ui.bootstrap'])
 	  .config(function($routeProvider, $locationProvider) {
 	  	// debugger;
 		  $routeProvider
