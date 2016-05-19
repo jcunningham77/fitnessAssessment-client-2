@@ -23,6 +23,37 @@
 	</uib-accordion-group>
 </uib-accordion> -->
 
+  	<div style="padding-bottom: 10px;" ng-hide="addingNewAssessment">
+  		<button class="btn btn-primary btn-sm" ng-click="addingNewAssessment=true">Add new assessment</button>
+	</div>
+   <form style="padding-bottom: 10px;" name="form" ng-submit="addNewAssessment()" role="form" ng-show="addingNewAssessment">
+        <div class="form-group" ng-class="{ 'has-error': form.height.$dirty && form.height.$error.required }">
+            <label for="height">Height</label>
+            <input type="text" name="height" id="height" class="form-control" ng-model="newAssessment.height" required />
+            <span ng-show="form.height.$dirty && form.height.$error.required" class="help-block">Height is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.weight.$dirty && form.weight.$error.required }">
+            <label for="weight">Weight</label>
+            <input type="text" name="weight" id="weight" class="form-control" ng-model="newAssessment.weight" required />
+            <span ng-show="form.weight.$dirty && form.weight.$error.required" class="help-block">Weight is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.age.$dirty && form.age.$error.required }">
+            <label for="age">Age</label>
+            <input type="text" name="age" id="age" class="form-control" ng-model="newAssessment.age" required />
+            <span ng-show="form.age.$dirty && form.age.$error.required" class="help-block">Age is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.bloodpressure.$dirty && form.bloodpressure.$error.required }">
+            <label for="bloodpressure">Blood Pressure</label>
+            <input type="bloodpressure" name="bloodpressure" id="bloodpressure" class="form-control" ng-model="newAssessment.bloodpressure" required />
+            <span ng-show="form.bloodpressure.$dirty && form.bloodpressure.$error.required" class="help-block">Blood pressure is required</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Create New Assessment</button>
+            <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a ng-click="addingNewAssessment=false" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+
 <div ng-controller="AccordionDemoCtrl">
   <script type="text/ng-template" id="group-template.html">
     <div class="panel {{panelClass || 'panel-default'}}">
@@ -49,13 +80,14 @@
       Open only one at a time
     </label>
   </div> -->
+
+
   <uib-accordion close-others="oneAtATime">
-    <uib-accordion-group heading="Assessment Date: {{assessment.created | date:'MM/dd/yyyy HH:mm'}}" ng-repeat="assessment in user.assessments | orderBy : assessment.created">
+    <uib-accordion-group heading="Assessment Date: {{assessment.created | date:'MM/dd/yyyy HH:mm'}}, {{assessment.created}} " ng-repeat="assessment in user.assessments | orderBy : assessment.created : false ">
       <h5>Height: {{assessment.height}}</h5>
 	  <h5>Weight: {{assessment.weight}}</h5>
 	  <h5>Age: {{assessment.age}}</h5>
 	  <h5>Blood Pressure: {{assessment.bloodpressure}}</h5>
     </uib-accordion-group>
-   
   </uib-accordion>
 </div>

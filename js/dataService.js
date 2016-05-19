@@ -78,6 +78,30 @@ angular.module("fitnessAssessment-client-2")
 
     }
 
+    this.addUserAssessment = function(userId,newAssessment, callback){
+            var config = {
+                headers : {
+                    'authorization': undefined,
+                    'application-id': 'CCD64643-E1D9-9AA2-FFF6-93992E5B9D00',
+                    'secret-key':'266A1786-4FFA-FBAE-FFD7-53D4EEF7A700',
+                    'application-type':'REST',
+                    'Content-Type':'application/json'
+                }
+            }
+
+            var assessments = {};
+            assessments["assessments"] = newAssessment;
+
+            console.log("dataservice, addUserAssessment, assessments = " + JSON.stringify(assessments));
+            
+
+
+            console.log("about to invoke Backendless post assessment API call, userID =  = " + userId);
+            return $http.put('https://api.backendless.com/v1/data/Users/' + userId, assessments,config).then(handleSuccess,handleError);
+
+
+    }
+
    function handleSuccess(res) {
         var response;
         response = { success: true,data:res };

@@ -89,9 +89,10 @@ angular.module("fitnessAssessment-client-2")
 		$scope.users.splice($index,1);
 	};
 })
-.controller('UserController',function($scope,$routeParams,dataService){
+.controller('UserController',function($scope,$routeParams,dataService, $location){
 	$scope.name = "UserController";
 	$scope.params = $routeParams;
+	$scope.addingNewAssessment = false;
 	//debugger;
 	console.log("UserController, routeParams = " + JSON.stringify($scope.params));
 
@@ -107,6 +108,22 @@ angular.module("fitnessAssessment-client-2")
     	isFirstOpen: true,
     	isFirstDisabled: false
   	};
+
+  	$scope.addNewAssessment = function(){
+  		$scope.newAssessment.___class = 'Assessment';
+  		dataService.addUserAssessment($scope.user.objectId,$scope.newAssessment).then(function(response, $scope){
+  			console.log("addNewAssessment , data from the response = " + JSON.stringify(response.data));
+  			// debugger;
+  			// $scope.assessments.unshift($scope.newAssessment);
+
+  			// $scope.newAssessment = "";
+  			// $scope.addingNewAssessment = false;
+
+  			$location.path('/UserInfo?userId={{$scope.user.objectId}}"');
+
+
+  		});
+  	}
 
 }).controller('AccordionDemoCtrl', function ($scope) {
   $scope.oneAtATime = true;
